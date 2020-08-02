@@ -18,7 +18,7 @@ class Zeddit:
     def createFileIfNonExistent(self):
         if not os.path.exists(self.getFileName()):
             with open(f'{self.getFileName()}', 'w+') as file:
-                file.write(',id,time\n')
+                file.write('id,time\n')
 
     def getFileName(self):
         return f'{self.subName}.csv'
