@@ -1,7 +1,11 @@
 from zeddit import Zeddit
 import time
+import sys
 
-zobject = Zeddit('showerthoughts', 1000)
+subreddit = sys.argv[1]
+upvote_threshold = int(sys.argv[2])
+
+zobject = Zeddit(subreddit, upvote_threshold)
 while True:
     posts = zobject.getPosts()
     zobject.sendMultiplePosts(posts)
