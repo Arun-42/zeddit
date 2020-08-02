@@ -18,7 +18,7 @@ class Zeddit:
     def createFileIfNonExistent(self):
         if not os.path.exists(self.getFileName()):
             with open(f'{self.getFileName()}', 'w+') as file:
-                file.write('id,time')
+                file.write(',id,time\n')
 
     def getFileName(self):
         return f'{self.subName}.csv'
@@ -61,7 +61,7 @@ class Zeddit:
         for post in posts:
             data.append([post.id, time.time()])
         df = pd.DataFrame(data, columns=["id", "time"])
-        df.to_csv(self.getFileName(), mode = "a", header=False)
+        df.to_csv(self.getFileName(), mode="a", header=False, index=False)
 
     def deleteOldPosts(self, file_name=None):
         twoDaysInSeconds = 2*24*60*60
@@ -71,6 +71,7 @@ class Zeddit:
             file_name = self.getFileName()
         df = pd.read_csv(file_name)
         df = df.drop(df[df.time < timeTwoDaysAgo].index)
+        df.to_csv(self.getFileName(), mode="w", index=False)
 
     def getZulipClient(self):
         return zulip.Client(config_file="./zuliprc")
