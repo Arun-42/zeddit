@@ -79,7 +79,7 @@ class Zeddit:
         post_title = post.title
         post_url = post.url
 
-        message_body = "\"" + post_title + "\"" + '\n' + post_url
+        message_body = "" + post_title + "" + '\n' + post_url
         message = {
             "type": "stream",
             "to": "Reddit",
