@@ -6,4 +6,5 @@ while True:
     posts = zobject.getPosts()
     zobject.sendMultiplePosts(posts)
     zobject.storeToCSV(posts)
+    zobject.deleteOldPosts()
     time.sleep(300)
